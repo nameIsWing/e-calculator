@@ -5,6 +5,7 @@ let inputDisplay = $('#input');
 let outputVal;
 
 window.onclick = (e) => {
+    e.stopPropagation();
     if($el(e,'button[data-value]')) appendToDisplay(e);
     if($el(e,'#ac')) clearDisplay();
     if($el(e,'#equals')) equals();
@@ -22,8 +23,10 @@ const appendToDisplay = (e) => {
     };
 
     const targetVal = e.target.dataset.value;
+
     const operators = ['×', '÷', '-', '+', '.'];
     const firstChar = ['×', '÷'];
+
     const lastCharIsOperator = operators.includes(inputDisplay.innerText.charAt(inputDisplay.innerText.length - 1));
     if(lastCharIsOperator && $el(e,'.operators')) return;
     if(inputDisplay.innerText.length == 0 && firstChar.includes(targetVal)) return;
@@ -50,8 +53,12 @@ const equals = () => {
     let result;
 
     try {
-        if(inputText.includes('×')) evalText = inputText.replaceAll('×', '*');
-        if(inputText.includes('÷')) evalText = inputText.replaceAll('÷', '/');
+        if(inputText.includes('×') || inputText.includes('÷')) {
+            evalText = inputText
+                .replaceAll('×', '*')
+                .replaceAll('÷', '/');
+        }
+        console.log(evalText);
         
         result = eval(evalText)
             .toLocaleString(
@@ -64,7 +71,7 @@ const equals = () => {
         $('#output').innerText = result;
         $('#list').innerHTML += `<li>${inputText} = ${result}</li>`
     } catch (error) {
-        $('#output').innerText = "Something's wrong.";
+        $('#output').innerText = "ERROR";
         console.warn(error.message);
     };
 
