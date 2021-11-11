@@ -11,6 +11,10 @@ window.onclick = (e) => {
     if($el(e,'#del')) delLastChar();
 }
 
+const slideIn = () => {
+    $('#history').classList.toggle('slide-in');
+}
+
 const appendToDisplay = (e) => {
     if($el(e,'.operators') && $('#output').innerText) {
         clearDisplay();
@@ -46,13 +50,20 @@ const equals = () => {
         if(inputText.includes('×')) evalText = inputText.replaceAll('×', '*');
         if(inputText.includes('÷')) evalText = inputText.replaceAll('÷', '/');
         
-        result = eval(evalText);
-        console.log(result);
+        result = eval(evalText)
+            .toLocaleString(
+                'en-US', 
+                {minimumFractionDigits: 0},
+                {maximumFractionDigits: 8},
+            );
+
+        console.log(`${inputText} = ${result}`);
         $('#output').innerText = result;
+        $('#list').innerHTML += `<li>${inputText} = ${result}</li>`
     } catch (error) {
         $('#output').innerText = "Syntax Error";
         console.warn(error.message);
-    }
+    };
 
     outputVal = result;
 }

@@ -12,13 +12,12 @@ body {
   place-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #e0faff;
+  background-color: #292d33;
 }
 
 main {
   background-color: #5b5e6b;
-  width: clamp(26rem, 50vw, 28rem);
-  margin: 0 auto;
+  width: 24rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -27,15 +26,16 @@ main {
       grid-template-rows: repeat(auto, auto);
   gap: .125rem;
   padding: .125rem;
-  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  -webkit-transition: .15s;
-  transition: .15s;
+  padding-top: 0;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 main:hover {
-  -webkit-box-shadow: 0 1rem 1.5rem -0.25rem rgba(0, 0, 0, 0.25);
-          box-shadow: 0 1rem 1.5rem -0.25rem rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.35);
+          box-shadow: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.35);
 }
 
 main #display {
@@ -43,9 +43,10 @@ main #display {
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-column: 1 / span 4;
-  height: 10rem;
+  height: 10.25rem;
   background-color: #5b5e6b;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0;
+  overflow: hidden;
 }
 
 main #name {
@@ -56,22 +57,63 @@ main #name {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding-bottom: .25rem;
-  text-transform: uppercase;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .5 .75rem;
   font-size: .875rem;
   letter-spacing: 1px;
-}
-
-main #name span {
-  display: inline-block;
-  padding: 0 .5rem;
+  position: relative;
   background-color: #3f414a;
-  border-radius: 0 0 .25rem .25rem;
   -webkit-transform: translateY(-0.25rem);
           transform: translateY(-0.25rem);
+}
+
+main #name .brand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-left: .5rem;
+  font-size: .875rem;
+}
+
+main #name img {
+  margin-right: .5rem;
+  cursor: pointer;
+}
+
+main #name .slide-in {
+  left: 0 !important;
+}
+
+main #name #history {
+  background-color: #3f414a;
+  position: absolute;
+  width: 100%;
+  height: 8.75rem;
+  top: 1.5rem;
+  left: 100%;
+  overflow-y: scroll;
+  padding: .5rem 1rem;
+  -webkit-transition: .3s ease-out;
+  transition: .3s ease-out;
+}
+
+main #name #history h2 {
+  font-size: .875rem;
+  margin: 0;
+}
+
+main #name #history::-webkit-scrollbar {
+  background-color: transparent;
+  width: .25rem;
 }
 
 main #input {
@@ -82,10 +124,11 @@ main #input {
       -ms-flex-align: center;
           align-items: center;
   height: 35%;
-  padding: 0 .25rem .25rem .25rem;
-  font-size: 1.625rem;
+  padding: .25rem 1rem .25rem 1rem;
+  font-size: 1.25rem;
   overflow-x: scroll;
   overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 main #input::-webkit-scrollbar {
@@ -93,8 +136,13 @@ main #input::-webkit-scrollbar {
   height: .25rem;
 }
 
+main #input::-webkit-scrollbar-thumb {
+  height: .125rem;
+}
+
 main #output {
   height: 50%;
+  width: 100%;
   padding: 0 .5rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,28 +153,33 @@ main #output {
   -webkit-box-pack: right;
       -ms-flex-pack: right;
           justify-content: right;
-  font-size: 2.5rem;
+  font-size: 2.125rem;
   overflow-x: scroll;
   overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 main #output::-webkit-scrollbar {
   background-color: transparent;
-  height: .25rem;
+  height: .125rem;
+}
+
+main #output::-webkit-scrollbar-thumb {
+  height: .125rem;
 }
 
 main button {
   border: none;
   outline: none;
-  height: 6rem;
-  font-size: 1.5rem;
+  height: 5rem;
+  font-size: 1.25rem;
   -webkit-transition: .1s;
   transition: .1s;
 }
 
 main button:active {
-  -webkit-transform: scale(0.96);
-          transform: scale(0.96);
+  -webkit-transform: scale(0.94);
+          transform: scale(0.94);
 }
 
 main button:hover {
@@ -308,4 +361,24 @@ main #ac, main #equals {
 main #del {
   background-color: #3f414a;
   color: #e0985c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+main #del::after {
+  position: absolute;
+  inset: 0;
+  content: " ";
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
