@@ -33,6 +33,7 @@ const appendToDisplay = (e) => {
 }
 
 const clearDisplay = () => {
+    $('#history').classList.remove('slide-in');
     inputDisplay.innerText = '';
     $('#output').innerText = '';
 }
