@@ -47,6 +47,7 @@ const equals = () => {
     const inputText = inputDisplay.innerText;
     let evalText = inputText;
     let result;
+
     
     try {
         if(inputText.includes('×')) evalText = inputText.replaceAll('×', '*');
@@ -67,5 +68,5 @@ const equals = () => {
         console.warn(error.message);
     };
 
-    outputVal = result;
+    outputVal = result.replaceAll(',', '');
 }
