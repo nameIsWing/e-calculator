@@ -102,8 +102,8 @@ main #name #history {
   left: 100%;
   overflow-y: scroll;
   padding: .5rem 1rem;
-  -webkit-transition: .3s ease-out;
-  transition: .3s ease-out;
+  -webkit-transition: .2s ease-out;
+  transition: .2s ease-out;
 }
 
 main #name #history h2 {

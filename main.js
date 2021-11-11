@@ -19,15 +19,16 @@ const appendToDisplay = (e) => {
     if($el(e,'.operators') && $('#output').innerText) {
         clearDisplay();
         inputDisplay.innerText += outputVal;
-    }
+    };
 
     const targetVal = e.target.dataset.value;
     const operators = ['×', '÷', '-', '+', '.'];
     const firstChar = ['×', '÷'];
-    const isOperator = operators.includes(inputDisplay.innerText.charAt(inputDisplay.innerText.length - 1));
-    if(isOperator && $el(e,'.operators')) return;
+    const lastCharIsOperator = operators.includes(inputDisplay.innerText.charAt(inputDisplay.innerText.length - 1));
+    if(lastCharIsOperator && $el(e,'.operators')) return;
     if(inputDisplay.innerText.length == 0 && firstChar.includes(targetVal)) return;
 
+    $('#history').classList.remove('slide-in');
     inputDisplay.innerText += targetVal;
 }
 
