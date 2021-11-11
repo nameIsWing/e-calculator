@@ -116,7 +116,8 @@ main {
             height: .25rem;
         }
         &::-webkit-scrollbar-thumb {
-            height: .125rem;
+            height: .25rem;
+            background-color: $bg-0;
         }
     }
     #output {
@@ -134,10 +135,11 @@ main {
 
         &::-webkit-scrollbar {
             background-color: transparent;
-            height: .125rem;
+            height: .25rem;
         }
         &::-webkit-scrollbar-thumb {
-            height: .125rem;
+            height: .25rem;
+            background-color: $bg-0;
         }
     }
     button {

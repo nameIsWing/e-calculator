@@ -45,10 +45,10 @@ const delLastChar = () => {
 
 const equals = () => {
     const inputText = inputDisplay.innerText;
+    if(inputText.length == 0) return;
     let evalText = inputText;
     let result;
 
-    
     try {
         if(inputText.includes('×')) evalText = inputText.replaceAll('×', '*');
         if(inputText.includes('÷')) evalText = inputText.replaceAll('÷', '/');
@@ -64,7 +64,7 @@ const equals = () => {
         $('#output').innerText = result;
         $('#list').innerHTML += `<li>${inputText} = ${result}</li>`
     } catch (error) {
-        $('#output').innerText = "Syntax Error";
+        $('#output').innerText = "Something's wrong.";
         console.warn(error.message);
     };
 
